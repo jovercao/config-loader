@@ -1,0 +1,14 @@
+{
+  "name": "config-loader",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash.defaultsdeep": "^4.6.1"
+  }
+}
