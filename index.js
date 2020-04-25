@@ -3,21 +3,6 @@ const path = require('path');
 const fs = require('fs');
 const os = require('os');
 
-const isPkg = Reflect.has(process.versions, 'pkg');
-
-// pkg打包后取exe所在目录，否则取源码上两层(即项目主目录)
-let appRoot;
-if (isPkg) {
-  path.dirname(process.execPath);
-} else {
-  // 如果当前模块在被依赖的路径下，则使用项目主目录
-  if (path.basename(path.resolve(__dirname, '..')) === 'node_modules') {
-    appRoot = path.resolve(__dirname, '../../');
-  } else {
-    appRoot = path.dirname(process.execPath);
-  }
-}
-
 function load({
   default: config,
   // ensureAppfile = false,
@@ -28,6 +13,21 @@ function load({
   cwdfile = '.config.json',
   userfile = '.config.json'
 } = {}) {
+
+  const isPkg = Reflect.has(process.versions, 'pkg');
+
+  // pkg打包后取exe所在目录，否则取源码上两层(即项目主目录)
+  let appRoot;
+  if (isPkg) {
+    appRoot = path.dirname(process.execPath);
+  } else {
+    // 如果当前模块在被依赖的路径下，则使用项目主目录
+    if (path.basename(path.resolve(__dirname, '..')) === 'node_modules') {
+      appRoot = path.resolve(__dirname, '../../');
+    } else {
+      appRoot = path.dirname(process.execPath);
+    }
+  }
 
   function loadConfig(filePath) {
     if (fs.existsSync(filePath)) {
