@@ -59,7 +59,7 @@ function load({
   }
 
   Object.assign(variants, {
-    basePath: appRoot
+    appRoot
   });
 
   const variantHolders = Object.entries(variants).sort(([a], [b]) => b.length - a.length).map(([key, value]) => {
