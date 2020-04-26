@@ -37,7 +37,7 @@ function load({
         const loadedConfig = JSON.parse(fs.readFileSync(filePath));
         config = defaultsDeep(loadedConfig, config);
       } catch (error) {
-        const newError = new Error(`读取配置文件${pwdConfigFile}失败！错误信息：${error.message}`);
+        const newError = new Error(`读取配置文件${filePath}失败！错误信息：${error.message}`);
         newError.innerError = error;
         throw newError;
       }
