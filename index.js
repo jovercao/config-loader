@@ -10,8 +10,10 @@ function load({
   // ensureCwdfile = false,
   variants = {},
   appfile = 'app.config',
-  cwdfile = '.config.json',
-  userfile = '.config.json'
+  cwdfile = '',
+  userfile = '',
+  // 自动初始化appFile
+  initAppfile = false
 } = {}) {
 
   const isPkg = Reflect.has(process.versions, 'pkg');
@@ -43,13 +45,20 @@ function load({
   }
 
   const appConfigFile = path.resolve(appRoot, appfile);
+  if (initAppfile && !fs.existsSync(appConfigFile)) {
+    fs.writeFileSync(appConfigFile, JSON.stringify(defaultConfig, null, '  '));
+  }
   loadConfig(appConfigFile);
 
-  const userConfigFile = path.resolve(os.homedir(), userfile);
-  loadConfig(userConfigFile);
+  if (userfile) {
+    const userConfigFile = path.resolve(os.homedir(), userfile);
+    loadConfig(userConfigFile);
+  }
 
-  const cwdConfgFile = path.resolve(process.cwd(), cwdfile);
-  loadConfig(cwdConfgFile);
+  if (cwdfile) {
+    const cwdConfgFile = path.resolve(process.cwd(), cwdfile);
+    loadConfig(cwdConfgFile);
+  }
 
   if (!config) {
     config = defaultConfig;
