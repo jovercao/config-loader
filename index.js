@@ -4,7 +4,7 @@ const fs = require('fs');
 const os = require('os');
 
 function load({
-  default: config,
+  default: defaultConfig,
   // ensureAppfile = false,
   // ensureUserfile = false,
   // ensureCwdfile = false,
@@ -31,6 +31,7 @@ function load({
     }
   }
 
+  let config = defaultConfig;
   function loadConfig(filePath) {
     if (fs.existsSync(filePath)) {
       try {
