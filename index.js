@@ -3,19 +3,18 @@ const path = require('path');
 const fs = require('fs');
 const os = require('os');
 
-function load({
-  default: defaultConfig,
-  // ensureAppfile = false,
-  // ensureUserfile = false,
-  // ensureCwdfile = false,
-  variants = {},
-  appfile = 'app.config',
-  cwdfile = '',
-  userfile = '',
-  // 自动初始化appFile
-  initAppfile = false
-} = {}) {
-
+function load(options = {}, defaultConfig) {
+  const {
+    variants = {},
+    appfile = 'app.config',
+    cwdfile = '',
+    userfile = '',
+    // 自动初始化appFile
+    initAppfile = false
+  } = options;
+  if (!defaultConfig) {
+    defaultConfig = options.default || {};
+  }
   const isPkg = Reflect.has(process.versions, 'pkg');
 
   // pkg打包后取exe所在目录，否则取源码上两层(即项目主目录)
