@@ -60,7 +60,7 @@ if (process.env.NODE_ENV === 'developement') {
 
 ## api
 
-### load(options)
+### load(options, defaultConfig)
 
 加载配置文件中的配置
 
@@ -87,3 +87,8 @@ string 类型，指定用户配置文件的文件名，不指定时将不加载�
 **options.cwdfile**
 
 string 类型，指定工作路径配置文件的文件名，不指定时将不加载，不指定时将不加载工作路径配置文件
+
+
+**defaultConfig**
+
+object 类型，默认参数，可空，同`options.default`
