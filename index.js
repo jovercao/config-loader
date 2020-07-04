@@ -87,7 +87,7 @@ function load(options = {}, defaultConfig) {
         }
         config[key] = value;
       }
-      if (typeof value === 'object') {
+      if (value && typeof value === 'object') {
         variantReplace(value);
       }
     });

@@ -92,3 +92,9 @@ string 类型，指定工作路径配置文件的文件名，不指定时将不�
 **defaultConfig**
 
 object 类型，默认参数，可空，同`options.default`
+
+## 版本历史
+
+- 0.1.6
+  - 解决当有项为null或undefined时，环境变量替换时报错问题
+  

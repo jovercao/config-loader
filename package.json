@@ -1,6 +1,6 @@
 {
   "name": "@jovercao/config-loader",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,5 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "lodash.defaultsdeep": "^4.6.1"
+  },
+  "devDependencies": {
+    "mocha": "^8.0.1"
   }
 }
